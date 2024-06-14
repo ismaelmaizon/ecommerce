@@ -1,0 +1,20 @@
+.container_carrito{
+    width: 80%;
+    margin: auto;
+    margin-bottom: 25px;
+}
+
+
+.container_carrito_title{
+    width: 75%;
+    margin: auto;
+    padding-top: 50px;
+    font-size: 20px;
+}
+
+.cart_buttons{
+    display: flex;
+    flex-direction: column;
+}
+
+

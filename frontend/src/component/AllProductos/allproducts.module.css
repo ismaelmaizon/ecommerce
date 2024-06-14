@@ -1,0 +1,71 @@
+.container{
+    width: 100%;
+    height: 100%;
+    margin: auto;
+}
+
+.allproducts_container{
+    display: grid;
+    grid-template-columns: repeat(4, 0.25fr);
+    gap: 15px;
+}
+
+.allproducts_cart{
+    margin: auto;
+    width: 300px;
+    height: 450px;
+
+}
+
+.allproducts_cart:hover {
+    transform: scale(1.1); /* Hacemos que la imagen se agrande un 10% (1.1 veces) cuando pasamos el mouse sobre ella */
+}
+
+.allproducts_button{
+    width: 100%;
+    height: 100%;
+
+}
+
+.allproducts_imag:hover {
+    transform: scale(1.2); /* Hacemos que la imagen se agrande un 10% (1.1 veces) cuando pasamos el mouse sobre ella */
+}
+
+/* Cambiar a una sola columna en pantallas más pequeñas */
+@media screen and (max-width: 1480px) {
+    .allproducts_container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .allproducts_cart{
+        margin: auto;
+        width: 300px;
+        height: 450px;
+    
+    }
+    .allproducts_imag{
+            width: 150px;
+            height: 300px;
+    }
+    .allproducts_imag:hover {
+        transform: scale(1.2); /* Hacemos que la imagen se agrande un 10% (1.1 veces) cuando pasamos el mouse sobre ella */
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .allproducts_container {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .allproducts_cart{
+        margin: auto;
+        width: 300px;
+        height: 450px;
+    
+    }
+    .allproducts_imag{
+            width: 150px;
+            height: 300px;
+    }
+    .allproducts_imag:hover {
+        transform: scale(1.2); /* Hacemos que la imagen se agrande un 10% (1.1 veces) cuando pasamos el mouse sobre ella */
+    }
+}
