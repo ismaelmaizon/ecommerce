@@ -18,7 +18,7 @@ function Login() {
 
     //contexto session
     const [session, setSession] = useState('')
-    const {setUser} = useContext(MiContexto)
+    const {setUser, setLink} = useContext(MiContexto)
 
     const router = useNavigate()
     const {
@@ -77,9 +77,6 @@ function Login() {
                                     const formData = new FormData();
                                     formData.append('email', info.email);
                                     formData.append('password', info.password);
-                                    console.log(info.email);
-                                    console.log(info.password);
-
                                     try {
                                         await axios.post('http://localhost:8080/api/auth/login', formData, {withCredentials: true})
                                             .then((response) => {

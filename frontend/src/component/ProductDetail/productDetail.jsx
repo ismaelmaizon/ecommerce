@@ -23,6 +23,8 @@ function ProductDetail() {
     const router = useNavigate()
     //usuario
     const { user, getProducts } = useContext(MiContexto)
+    //contexto
+    const {productoId, getProduct, producto, isLoading, setIsLoading, deleteProduct} = useContext(MiContexto)
     //constador de productos
     const [cont, setCont] = useState(1)
     const [num, setNum ] = useState(0)
@@ -37,8 +39,6 @@ function ProductDetail() {
         }
     }
     
-    //contexto
-    const {productoId, getProduct, producto, isLoading, setIsLoading, deleteProduct} = useContext(MiContexto)
         
     //agregar al carrito
     const addCart = async ( productoId, cont, producto) => {
@@ -114,6 +114,8 @@ function ProductDetail() {
         }
     }
     useEffect(  ()=> {
+        console.log('user');
+        console.log(user);
         setIsLoading(true)
         getProduct(productoId)
     }, [])

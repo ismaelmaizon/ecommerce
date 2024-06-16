@@ -58,7 +58,7 @@ app.use(session({ // configuramos sus elementos por seguridad, pero es necesario
   store:MongoStore.create({
       mongoUrl:  process.env.MONGODB_URL,//'mongodb+srv://ismaelmaizon1234:i35lPBag8MKqWaiw@cluster0.jy2xumj.mongodb.net/?retryWrites=true&w=majority',
       //mongoOptions: { useNewUrlParser: true, useUnifiedTopology: true },
-      ttl: 120,
+      ttl: 60,
   }),
   secret: 'mysecretsession',
   //resave: true,

@@ -12,6 +12,7 @@ function SendMail() {
 
     const {cartFinal, idVenta, name, phone, email, address, total, url, date, mount, valueRE, valueFP} = useContext(MiContexto)
     const router = useNavigate()
+    const [products, setProductos] = useState('')
     const [mensaje, setMensaje] = useState()
 
     /*
@@ -71,14 +72,23 @@ function SendMail() {
     useEffect(()=>{
         console.log(valueFP);
         console.log(valueRE);
+        let text = ''
+        cartFinal.map((el)=>{
+            text += `producto: ${el.name} - cantidad: ${el.cant} 
+            \n sub total = ${el.price + el.cant}
+            \n
+            `
+        })
+        console.log(products);
         if (valueFP == 'DebitoCredito' && valueRE == 'Retiro' ) {
             // Mensaje predeterminado (Pago MP - Retiro)
             setMensaje( `¡Hola! mi codigo de venta es: *${idVenta}*, 
             \n Fecha: ${date}
             \n El valor total es:$ ${total}
-            \n
+            \n Porductos:
+            \n ${text}
+            \n 
             \n Link de pago: ${url} 
-            \n
             \n Ya te paso el comprobante de Pago.
             \n Y en un momento paso por el local a retirar`)
         }else if ( valueFP == 'DebitoCredito' && valueRE == 'Envio') {
@@ -87,21 +97,29 @@ function SendMail() {
             \n Fecha: ${date}
             \n El valor total es:$ ${total}
             \n Ubicacion: ${address}
+            \n Productos:
+            \n ${text}
+            \n
             \n
             \n *Link de pago*: ${url} 
-            \n
             \n Ya te paso el comprobante de Pago.`)
         }else if (valueFP == 'Efectivo' && valueRE == 'Retiro') {
             // Mensaje predeterminado (Pago Efectivo - Retiro)
             setMensaje(`¡Hola! mi codigo de venta es: *${idVenta}*, 
             \n Fecha: ${date}
+            \n Productos:
+            \n ${text}
+            \n
             \n El valor total es:$ ${total}
             \n Pago con:$ ${mount} 
             \n En un momento paso por el local`)
         }else{
             // Mensaje predeterminado (Pago Efectivo - Envio)
             setMensaje(`¡Hola! mi codigo de venta es: *${idVenta}*, 
-            \n Fecha: ${date}
+            \n Fecha: ${date}            
+            \n Productos:
+            \n ${text}
+            \n
             \n El valor total es:$ ${total}
             \n pago con:$ ${mount} 
             \n

@@ -148,8 +148,9 @@ const CartProvider = ({children}) => {
 
 
     useEffect(() => {
-       getProducts()
+        getProducts()
     }, []);
+
     
 
     return (

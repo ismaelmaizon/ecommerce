@@ -49,12 +49,13 @@ function Inicio() {
             </div>
         }
     }
+
             
 
     useEffect(()=>{
         getUser()
         setNumberCart(sessionStorage.length)
-    } , [] )
+    } , [])
 
     return (
     
