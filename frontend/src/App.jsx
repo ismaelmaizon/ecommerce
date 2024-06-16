@@ -8,7 +8,6 @@ import Downloadcv from './component/DownloadCv/downloadcv'
 import { ListItem, UnorderedList } from '@chakra-ui/react'
 import CartProvider from './component/context/contex'
 import Cart from './component/Cart/cart'
-import Dashboard from './component/dashboard/dashboard' 
 import ProductDetail from './component/ProductDetail/productDetail'
 import Login from './component/Login/login'
 import RegisterUser from './component/RegisterUser/registerUser'
@@ -39,10 +38,8 @@ function App() {
                     <Route element={<UpDateProducto/>} path='/updateproducto' ></Route>
                     <Route element={<ProductDetail/>} path='/productDetail' ></Route>
                     <Route element={<Cart/>} path='/Cart' ></Route>
-                    <Route element={<Dashboard/>} path='/Dashboard' ></Route>
                     <Route element={<Dashboard2/>} path='/Dashboard2' ></Route>
                     <Route element={<SendMail/>} path='/sendEmail' ></Route>
-                    
                     <Route element={<RegisterUser/>} path='/register' ></Route>
                     <Route element={<Downloadcv/>} path='/downloadcv' ></Route>
                   </Routes>
