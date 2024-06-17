@@ -1,11 +1,9 @@
 import express  from "express";
 import { agregarProducto, getProductos, getProducto, deleteProducto, updateProducto } from "../controllers/crudProductos.js";
-import { addProductCart, cleanCart, createCart, getCart, upDateCart } from "../controllers/crudCarts.js";
 import {getUser, login, register } from "../controllers/sessions.js";
 import passport from "passport";
 import {registrarVenta, upDateVenta } from "../controllers/crudVentas.js";
 import {descargarpdf} from "../controllers/fileController.js"
-import { createVentasMoment, deleteVentasMoment, getVentasMoment } from "../controllers/crudVentasMoment.js";
 import { sendMail } from "../controllers/sendEmail.js";
 
 
@@ -20,31 +18,12 @@ router.post('/login', passport.authenticate('local-login', {session: false}), lo
 router.get('/getuser',passport.authenticate('jwt', {session: false}), getUser)
 
 
-
-//Clientes
-//ver carrito
-router.get('/carts/:cid', passport.authenticate('jwt', {session: false}),getCart)
-//agregar producto al carrito
-router.post('/carts/:cid/product/:pid', passport.authenticate('jwt', {session: false}), addProductCart)
-//actualizar cart
-router.post('/carts/:cid', passport.authenticate('jwt', {session: false}), upDateCart)
-//vaciar carrito
-router.delete('/carts/:cid', passport.authenticate('jwt', {session: false}), cleanCart)
-
 //registrar venta
 router.post('/registrarVenta', registrarVenta)
 //actualizar status de venta
 router.get('/upDateVenta/:vid', upDateVenta)
 //enviar email
 router.post('/sendMail/:vid',sendMail)
-
-//crear id momentanteo de venta
-router.post('/createIdVenta/:vid', createVentasMoment)
-//obtener id momentaneo de venta
-router.get('/getIdVenta', getVentasMoment)
-//eliminar el id momentaneo
-router.delete('/deleteIds', deleteVentasMoment)
-
 
 
 // rutas productos
@@ -80,10 +59,5 @@ router.get('/logout', (req, res) => {
 router.get('/descargarCV', descargarpdf )
 
 
-
-
-//rutas carrito
-
-router.post('/crearCarrito', createCart)
 
 export default router

@@ -13,7 +13,8 @@ const UserSchema = new mongoose.Schema({
     role: { type: String, default: 'user' },
     cart: {
         type: mongoose.Schema.Types.ObjectId, 
-        ref: 'carts'
+        ref: 'carts',
+        default: []
     },
     last_connection: { type: String, default: fecha },
     code: String

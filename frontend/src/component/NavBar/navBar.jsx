@@ -1,37 +1,22 @@
-import React, { useContext } from "react";
-import {Grid, GridItem, IconButton, Stack, Tab, TabList, Tabs } from '@chakra-ui/react'
-import { Link, Route } from "react-router-dom";
-
-//form
-import { useForm } from 'react-hook-form'
-import {
-  FormErrorMessage,
-  FormLabel,
-  FormControl,
-  Input,
-  Button,
-} from '@chakra-ui/react'
-
+import { useContext} from "react"
+import {Box, Drawer, DrawerBody, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, Grid, GridItem, Stack, useDisclosure, useMediaQuery} from '@chakra-ui/react'
+import { Link } from "react-router-dom"
+import {Button } from '@chakra-ui/react'
 //icons
-
-import { AddIcon, ChevronDownIcon, EditIcon, ExternalLinkIcon, HamburgerIcon, RepeatIcon, Search2Icon, SearchIcon } from '@chakra-ui/icons'
-import { BsCartCheck } from "react-icons/bs";
-
-
+import { HamburgerIcon} from '@chakra-ui/icons'
+import { BsCartCheck } from "react-icons/bs"
 //menu
-
-import {
-    Menu,
-    MenuButton,
-    MenuList,
-    MenuItem,
-  } from '@chakra-ui/react'
-import { MiContexto } from "../context/contex";
-import { useNavigate } from "react-router-dom";
+import { MiContexto } from "../context/contex"
+//import { useNavigate } from "react-router-dom";
 import clases from './navBar.module.css'
 
 
 function NavBar() {
+    //mediaquery
+    const [isLargerThan1280] = useMediaQuery('(min-width: 1280px)')
+
+    //Menu
+    const { isOpen, onOpen, onClose } = useDisclosure()
 
     const color = '#b5b5b5'
     const { numberCart, setCart } = useContext(MiContexto)
@@ -48,110 +33,91 @@ function NavBar() {
         return carrito;
     }
 
-    const {
-        handleSubmit,
-        register,
-        formState: { errors, isSubmitting },
-      } = useForm()
-    
-      function onSubmit(values) {
-        return new Promise((resolve) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2))
-            resolve()
-          }, 3000)
-        })
-    }
-      // Condición para determinar el tamaño de la pantalla
+    // Condición para determinar el tamaño de la pantalla
     const isSmallScreen = window.innerWidth < 768;
     console.log('isSmallScreen: ');
     console.log(isSmallScreen);
 
 
     return (
-        <div className={clases.containerNav} >
-            <div className={clases.container_select_menu}>
-                <Menu>
-                    <MenuButton
-                        border={'none'}
-                        w={100} h={70}
-                        fontSize={50}
-                        as={IconButton}
-                        aria-label='Options'
-                        icon={<HamburgerIcon />}
-                        variant='outline'
-                    />
-                    <MenuList>
-                        <Link to={'/login'}>
-                            <MenuItem icon={<AddIcon />} >
-                            Login
-                            </MenuItem>
+        <Box bg='#666666' height='80px' w='100%'>
+              {isLargerThan1280 ? <Grid m='auto' w='75%' h='100px' templateColumns='repeat(5, 1fr)' alignItems='center'>
+                     <GridItem colSpan={1} m='auto'>
+                        <Button bg={color} onClick={onOpen}>
+                            <HamburgerIcon fontSize={35} m={2}  />
+                        </Button>
+                        <Drawer placement={'left'} onClose={onClose} isOpen={isOpen}>
+                            <DrawerOverlay />
+                            <DrawerContent>
+                            <DrawerHeader borderBottomWidth='1px'>Basic Drawer</DrawerHeader>
+                            <DrawerBody>
+                                <p>Some contents...</p>
+                                <p>Some contents...</p>
+                                <p>Some contents...</p>
+                            </DrawerBody>
+                            <DrawerFooter mb={50} bg='red'>
+                                <p>hola</p>
+                            </DrawerFooter>
+                            </DrawerContent>
+                        </Drawer>
+                     </GridItem>
+                     <GridItem colSpan={3} m='auto' fontSize={30} >
+                        <Link className={clases.container_select_title} to='/'>
+                            <h1>AtelierBodereau</h1>
                         </Link>
-                        <Link to={'/Cart'}>
-                            <MenuItem icon={<AddIcon />} >
-                            Carrito
-                            </MenuItem>
-                        </Link>
-                        <Link to={'/login'}>
-                            <MenuItem icon={<AddIcon />} >
-                            Ubicacion
-                            </MenuItem>
-                        </Link>
-                        <Link to={'/login'}>
-                            <MenuItem icon={<AddIcon />} >
-                            instagram
-                            </MenuItem>
-                        </Link>
-                    </MenuList>
-                </Menu>
-
-            </div>
-            <div className={clases.container_select}>
-                <Link className={clases.container_select_title} to='/'>
+                     </GridItem>
+                     <GridItem  colStart={5}>
+                        <Stack>
+                            <Link to= '/Cart'>
+                                <Button  bg={color} variant='solid' onClick={ () => {
+                                    setCart(obtenerTodosLosItems())
+                                    }} >   
+                                    <BsCartCheck fontSize={25}/>
+                                    {numberCart}
+                                </Button>
+                            </Link>
+                            
+                        </Stack>
+                     </GridItem>
+                    </Grid> 
+            : <Grid m='auto' w='100%' h='100px' templateColumns='repeat(3, 1fr)' gap={30} alignItems='center'>
+                <GridItem colSpan={1} m='auto'>
+                <Button bg={color} onClick={onOpen}>
+                    <HamburgerIcon fontSize={35} />
+                </Button>
+                <Drawer placement={'left'} onClose={onClose} isOpen={isOpen}>
+                    <DrawerOverlay />
+                    <DrawerContent>
+                    <DrawerHeader borderBottomWidth='1px'>Basic Drawer</DrawerHeader>
+                    <DrawerBody>
+                        <p>Some contents...</p>
+                        <p>Some contents...</p>
+                        <p>Some contents...</p>
+                    </DrawerBody>
+                    <DrawerFooter mb={50} bg='red'>
+                                <p>hola</p>
+                            </DrawerFooter>
+                    </DrawerContent>
+                </Drawer>
+                </GridItem>
+                <GridItem colSpan={3} m='auto' fontSize={20} >
+                <Link to='/'>
                     <h1>AtelierBodereau</h1>
                 </Link>
-            </div>
-            <div className={clases.container_select}>
-                <form onSubmit={handleSubmit(onSubmit)} className={clases.container_select_form}>
-                    <FormControl isInvalid={errors.name}>
-                        <Input
-                        w={'90%'} 
-                        color={"white"}
-                        id='producto'
-                        backgroundColor={'#8c8c8c'}
-                        placeholder='ingrese nombre del producto'
-                        {...register('producto', {
-                            required: 'This is required',
-                            minLength: { value: 4, message: 'Minimum length should be 4' },
-                        })}
-                        />
-                        <FormErrorMessage>
-                        {errors.name && errors.name.message}
-                        </FormErrorMessage>
-                    </FormControl>
-                    <Button colorScheme='teal' type='submit'><SearchIcon/>
-                    </Button>
-                </form>
-            </div>
-            <div className="container_select">
-                <Stack direction='row' spacing={3} align='center' p={3} >
-                    <Link to='/login' className={clases.container_select_box} >
-                        <Button  backgroundColor={color} variant='solid'>
-                            login
-                        </Button>
-                    </Link>
-                    <Link to= '/Cart' className={clases.container_select_box_cart}>
-                        <Button  backgroundColor={color} variant='solid' onClick={ () => {
+                </GridItem>
+                <GridItem  colStart={5} ml={35} >
+                    <Link to= '/Cart'>
+                        <Button  bg={color} variant='solid' onClick={ () => {
                             setCart(obtenerTodosLosItems())
-                            }} >
+                            }} >   
+                            <BsCartCheck fontSize={25}/>
                             {numberCart}
-                            <BsCartCheck />
                         </Button>
                     </Link>
-                    
-                </Stack>
-            </div>
-        </div>
+                </GridItem>
+           </Grid> }
+            
+        </Box>
     )
 }
 

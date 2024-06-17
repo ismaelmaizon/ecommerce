@@ -1,6 +1,5 @@
-import {Button, Text } from "@chakra-ui/react";
-import { useContext, useEffect, useState } from "react";
-import clases from './inicio.module.css'
+import {Box, Button, Text } from "@chakra-ui/react";
+import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 //import Scroll from "../scroll/scroll";
 import Allproductos from "../AllProductos/allproducts";
@@ -33,7 +32,7 @@ function Inicio() {
     const saludoUser = (session) => {
         if (session != '') {
             return <div>
-                        <Text display={'flex'} fontSize={25} p={5} > { `hola ${session}` } <h3><PiHandWavingFill/></h3> </Text>
+                        <Text display={'flex'} fontSize={25} pt={5} > { `hola ${session}` } <h3><PiHandWavingFill/></h3> </Text>
                     </div>
         }
     }
@@ -59,17 +58,16 @@ function Inicio() {
 
     return (
     
-
-        <div className="container_Inicio">
-            <div className={clases.container_session}>
+        <Box  w='100%' h='100%'  >
+            <Text m='auto' >
                 {saludoUser(session)}
-            </div>
-            <div className={clases.container_Skills} >
-                <h1 className={clases.container_Skills_h1} >Productos</h1>
-            </div>
+            </Text>
+            <Box display='flex' pt={10} >
+                <Text m='auto' fontSize={50} >Productos</Text>
+            </Box>
             { user && addproduct(user) }
             <Allproductos/>
-        </div>
+        </Box>
 
     )
 }

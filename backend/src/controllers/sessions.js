@@ -1,6 +1,5 @@
 import express from 'express'
 import userModel from "../db/models/users.model.js";
-import CartModel from '../db/models/cart.model.js';
 import { encriptarPass } from "../utils.js";
 import jwt from 'jsonwebtoken'
 
@@ -19,22 +18,17 @@ export const register = async (req, res) => {
             res.send({status: 200, message: 'el usuario ya existe'} )
         }
 
-        await CartModel.create(carrito)
-        const newCart = await CartModel.find()
-        const newIdCart = newCart[newCart.length - 1]
-
         const data = {
             first_name: first_name,
             last_name: last_name,
             email: email,
             password: pass,
             role: role,
-            cart: newIdCart
         }
         const result = await userModel.create(data)
         console.log(data);
         console.log(result);
-        res.send({status: 200} )
+        res.send({status: 200, message: 'Usuario Creado'} )
 
     }catch(err){
         console.log(err);
@@ -58,18 +52,18 @@ export const login = async (req, res) => {
     if(user == null) {
         res.send({ message: 'clave o usuario incorrecto'})
     }else{
+        /*
         req.session.user = {
             name: user.first_name + user.last_name,
             email: user.email,
             age: user.age,
             role: user.role,
             role: user.cart
-        };
+        };*/
         let email = user.email
         let role = user.role
-        let cart = user.cart
         let name = user.first_name
-        let token = jwt.sign({email, role, cart, name}, 'coderSecret', {expiresIn: "24h"})
+        let token = jwt.sign({email, role, name}, 'coderSecret', {expiresIn: "24h"})
         console.log(token);
         res.header('Content-Type', 'application/json');
         res.cookie('CookiePrueba', token, { maxAge: 60000, httpOnly: true});
