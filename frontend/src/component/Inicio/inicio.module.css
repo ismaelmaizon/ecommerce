@@ -1,5 +1,5 @@
 *{
-    font-family: cursive;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .container_Inicio{
@@ -18,13 +18,13 @@
 .container_Skills{
     display: flex;
     color: black;
-    height: 120px;
+    height: 50px;
 }
 
 
 .container_Skills_h1{
     margin: auto;
-    margin-top: 25px;
-    font-size: 50px;
+    margin-top: 2px;
+    font-size: 25px;
 }
 

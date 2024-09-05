@@ -20,19 +20,20 @@
 .footer {
   position: unset;
   bottom: 0;
-  width: 75%;
-  /*background-color: #666666; /* Cambia esto al color que desees */
+  width: 100%;
+  background-color: #666666; /* Cambia esto al color que desees */
   color: black; /* Cambia esto al color que desees */
   padding: 1px; /* Ajusta el padding según sea necesario */
   box-sizing: border-box; /* Asegura que el padding se incluya en el ancho total */
   display: grid;
-  grid-template-columns: repeat(3, 1fr); 
+  grid-template-columns: repeat(3, 2fr); 
 }
 
-.footer > div {
+.footer > div  {
   /* Estilos para cada div interno, por ejemplo:*/
   padding-left: 100px;
   box-sizing: border-box;
+  font-size: '15px';
 }
 
 @media (max-width: 768px) {

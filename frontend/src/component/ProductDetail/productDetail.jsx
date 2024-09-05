@@ -88,7 +88,7 @@ function ProductDetail() {
         console.log(role);
         if (role === 'admin') {
             return  <div>
-                        <Button variant='solid' colorScheme='blue' onClick={ async () =>  {
+                        <Button variant='solid' colorScheme='blue' fontSize={10} h={8} onClick={ async () =>  {
                             let result = await deleteProduct(id)
                             console.log('resultado: ');
                             console.log(result);
@@ -109,7 +109,7 @@ function ProductDetail() {
         console.log(role);
         if (role === 'admin') {
             return  <div>
-                <Button variant='solid' colorScheme='blue' onClick={ async () =>  { router('/updateproducto') }} > Editar </Button>
+                <Button variant='solid' colorScheme='blue' fontSize={10} h={8} onClick={ async () =>  { router('/updateproducto') }} > Editar </Button>
             </div>
         }
     }
@@ -120,7 +120,7 @@ function ProductDetail() {
 
     return (
         isLoading ? (
-            <Text fontSize={70} > Cargando...</Text> )
+            <Text display={'flex'} m={'auto'} fontSize={70} > Cargando...</Text> )
             :(
             < div className={clases.card} >
                     <Card
@@ -128,50 +128,52 @@ function ProductDetail() {
                         overflow='hidden'
                         variant='outline'
                         >
-                        <Grid templateColumns='repeat(2, 1fr)' gap={2} >
-                            <GridItem w='150%' h='300' m='auto'>
+                        <Grid templateColumns='repeat(2, 1fr)' gap={2} w={'70%'} m={'auto'} >
+                            <GridItem display={'flex'} m={'auto'}>
                                 <Image
-                                    margin={'auto'}
-                                    boxSize='300px'
+                                    m={'auto'}
+                                    boxSize={'100%'}
                                     fit='cover'
                                     src={ `http://localhost:8080/static/${producto.urls[num].url}` }                    
                                     />
                             </GridItem>
-                            <GridItem m='auto' p={10} >   
-                                    {producto.urls.map( (el, index) =>{
-                                        return <Card key={index} mb={5}>
-                                                <Button w='100%' h='50%' m='auto' onClick={ () => { setNum(index) }} >
-                                                            <Image
-                                                                boxSize='100px'
-                                                                objectFit='cover'
-                                                                fit='cover'
-                                                                src={ `http://localhost:8080/static/${el.url}` }                    
-                                                                />
-                                                </Button>
-                                            </Card>
-                                            } )}
+                            <GridItem m='auto' p={2} w={'60%'} >
+                                <Grid templateRows='repeat(1, 0.25fr)'>
+                                        {producto.urls.map( (el, index) =>{
+                                            return <Card key={index} mb={2}>
+                                                    <Button w='100%' h='100%' m='auto' onClick={ () => { setNum(index) }} >
+                                                                <Image
+                                                                    boxSize={'100%'}
+                                                                    objectFit='cover'
+                                                                    fit='cover'
+                                                                    src={ `http://localhost:8080/static/${el.url}` }                    
+                                                                    />
+                                                    </Button>
+                                                </Card>
+                                                } )}
+                                </Grid>   
                             </GridItem>
                         </Grid>
                         
                         <Stack w={'100%'} >
-                            <CardBody>
-                            <Heading fontSize={40}>{producto.name}</Heading><Heading fontSize={30} > ${producto.price} </Heading>
-                            <Text fontSize={20} mt={5} >{producto.description}</Text>
+                            <CardBody h={'20%'} p={2} >
+                                <Heading fontSize={15}>{producto.name}</Heading><Heading fontSize={15} > ${producto.price} </Heading>
+                                <Text fontSize={10} mt={2} >{producto.description}</Text>
                             </CardBody>
-                            <CardFooter display={'grid'} gridTemplateRows={'30% 70%'} >
+                            <CardFooter display={'grid'} gridTemplateRows={'30% 70%'} p={2}>
                                 <div className={clases.cart_buttons} >
-                                            <Text fontSize={15} pb={2} >Elige la cantidad</Text>
+                                            <Text fontSize={10} pb={2} >Elige la cantidad</Text>
                                             <div className={clases.cart_buttons_cont} >
-                                                <Button variant='solid' colorScheme='blue' onClick={ () => resCont()}>
+                                                <Button variant='solid' colorScheme='blue' h={6} onClick={ () => resCont()}>
                                                     -
                                                 </Button>
                                                 <h3>{cont}</h3>
-                                                <Button variant='solid' colorScheme='blue' onClick={ () => sumCont()}>
+                                                <Button variant='solid' colorScheme='blue' h={6} onClick={ () => sumCont()}>
                                                     +
                                                 </Button>
                                             </div>
                                             <div className={clases.cart_buttons_crud}>
-                                                <Button variant='solid' colorScheme='blue' pt={'15px'} pb={'15px'} onClick={ async () =>  {
+                                                <Button variant='solid' colorScheme='blue' fontSize={10} h={8} onClick={ async () =>  {
                                                     await addCart(productoId, cont, producto)
                                                     router('/')    
                                                     } } >

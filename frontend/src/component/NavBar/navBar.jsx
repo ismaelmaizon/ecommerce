@@ -1,12 +1,11 @@
-import React, { useContext } from "react";
-import {Grid, GridItem, IconButton, Stack, Tab, TabList, Tabs } from '@chakra-ui/react'
-import { Link, Route } from "react-router-dom";
+import { useContext } from "react";
+import {IconButton, Stack } from '@chakra-ui/react'
+import { Link } from "react-router-dom";
 
 //form
 import { useForm } from 'react-hook-form'
 import {
   FormErrorMessage,
-  FormLabel,
   FormControl,
   Input,
   Button,
@@ -14,7 +13,7 @@ import {
 
 //icons
 
-import { AddIcon, ChevronDownIcon, EditIcon, ExternalLinkIcon, HamburgerIcon, RepeatIcon, Search2Icon, SearchIcon } from '@chakra-ui/icons'
+import { AddIcon, HamburgerIcon, SearchIcon } from '@chakra-ui/icons'
 import { BsCartCheck } from "react-icons/bs";
 
 
@@ -27,7 +26,6 @@ import {
     MenuItem,
   } from '@chakra-ui/react'
 import { MiContexto } from "../context/contex";
-import { useNavigate } from "react-router-dom";
 import clases from './navBar.module.css'
 
 
@@ -51,7 +49,7 @@ function NavBar() {
     const {
         handleSubmit,
         register,
-        formState: { errors, isSubmitting },
+        formState: { errors},
       } = useForm()
     
       function onSubmit(values) {
@@ -74,7 +72,7 @@ function NavBar() {
                 <Menu>
                     <MenuButton
                         border={'none'}
-                        w={100} h={70}
+                        w={100} h={80}
                         fontSize={50}
                         as={IconButton}
                         aria-label='Options'
@@ -82,7 +80,7 @@ function NavBar() {
                         variant='outline'
                     />
                     <MenuList>
-                        <Link to={'/login'}>
+                        <Link to={'/login'} underline="none">
                             <MenuItem icon={<AddIcon />} >
                             Login
                             </MenuItem>
@@ -115,10 +113,11 @@ function NavBar() {
                 <form onSubmit={handleSubmit(onSubmit)} className={clases.container_select_form}>
                     <FormControl isInvalid={errors.name}>
                         <Input
+                        h={'35px'}
                         w={'90%'} 
-                        color={"white"}
+                        color={"black"}
                         id='producto'
-                        backgroundColor={'#8c8c8c'}
+                        backgroundColor={'white'}
                         placeholder='ingrese nombre del producto'
                         {...register('producto', {
                             required: 'This is required',
@@ -129,19 +128,19 @@ function NavBar() {
                         {errors.name && errors.name.message}
                         </FormErrorMessage>
                     </FormControl>
-                    <Button colorScheme='teal' type='submit'><SearchIcon/>
+                    <Button h={'35px'} colorScheme='teal' type='submit'><SearchIcon/>
                     </Button>
                 </form>
             </div>
             <div className="container_select">
                 <Stack direction='row' spacing={3} align='center' p={3} >
                     <Link to='/login' className={clases.container_select_box} >
-                        <Button  backgroundColor={color} variant='solid'>
+                        <Button h={'35px'}  backgroundColor={color} variant='solid'>
                             login
                         </Button>
                     </Link>
                     <Link to= '/Cart' className={clases.container_select_box_cart}>
-                        <Button  backgroundColor={color} variant='solid' onClick={ () => {
+                        <Button h={'35px'}  backgroundColor={color} variant='solid' onClick={ () => {
                             setCart(obtenerTodosLosItems())
                             }} >
                             {numberCart}

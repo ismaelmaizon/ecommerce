@@ -1,49 +1,27 @@
 .card{
     margin: auto;
-    padding-top: 80px;
-    padding-bottom: 250px;
-    height: 150%;
-    width: 75%;
+    height: 50%;
+    width: 50%;
     font-size: 2px;
-
 }
-
-
-.cart_imgs{
-    height: 412px;
-    width: 200px;
-}
-
-.formulario_title{
-    width: 75%;
-    margin: auto;
-    padding-top: 50px;
-}
-
-.cart_buttons{
-    display: flex;
-    flex-direction: column;
-}
-
 
 .cart_buttons_cont{
     display: flex;
-    padding-bottom: 15px;
+    padding-bottom: 10px;
     flex-direction: row;
     gap: 20px;
 }
 
 .cart_buttons_cont h3{
     display: flex;
-    padding-top: 5px;
-    font-size: 20px;
+    font-size: 15px;
     color: black;
 }
 
 .cart_buttons_crud{
     display: flex;
     flex-direction: row;
-    gap: 20px;
+    gap: 5px;
 }
 
 

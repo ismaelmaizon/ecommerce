@@ -139,6 +139,7 @@ function AddProducto() {
                     
                     <Button mt={4} colorScheme='teal' isLoading={isSubmitting} type='submit'  onClick={ async ()=>{
                         const producto = getValues();
+                        console.log(producto.image[0]);
                         const formData = new FormData();
                         formData.append('name', producto.name);
                         formData.append('precio', producto.precio);

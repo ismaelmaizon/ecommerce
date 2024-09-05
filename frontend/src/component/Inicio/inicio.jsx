@@ -1,5 +1,5 @@
 import {Button, Text } from "@chakra-ui/react";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import clases from './inicio.module.css'
 import { Link } from "react-router-dom";
 //import Scroll from "../scroll/scroll";
@@ -43,8 +43,8 @@ function Inicio() {
         console.log(user);
         if (user.role === 'admin') {
             return <div>
-            <Button display={"flex"} m={"auto"} p={25} backgroundColor={'#ffe4b5'} >
-            <Link to={'/addproducto'} >Agregar nuevo producto</Link>
+            <Button display={"flex"} m={"auto"} p={25} fontSize={15} backgroundColor={'#ffe4b5'} >
+                <Link to={'/addproducto'} >Agregar nuevo producto</Link>
             </Button>
             </div>
         }
@@ -64,7 +64,7 @@ function Inicio() {
                 {saludoUser(session)}
             </div>
             <div className={clases.container_Skills} >
-                <h1 className={clases.container_Skills_h1} >Productos</h1>
+                <h1 className={clases.container_Skills_h1} >¡Hola conocé nuestros productos!</h1>
             </div>
             { user && addproduct(user) }
             <Allproductos/>

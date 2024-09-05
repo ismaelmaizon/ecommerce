@@ -5,6 +5,7 @@ import { Button, Card, CardBody, CardFooter, CardHeader, Heading, Image, Menu, M
 import clases from './allproducts.module.css'
 import { Link } from "react-router-dom";
 import { ChevronDownIcon } from "@chakra-ui/icons";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -13,6 +14,7 @@ function Allproductos () {
     const {productos,  setProdusctoID} = useContext(MiContexto)
     const [ tipo, setTipo ] = useState('categoria')
 
+    const router = useNavigate()
 
     console.log(productos);
 
@@ -37,30 +39,31 @@ function Allproductos () {
                 {productos.map( (el, index) => {
                     if(tipo.toLowerCase() === 'categoria'){
                         return (
-                            <Card className={clases.allproducts_cart}  key={index} mb={75} borderRadius={0} boxShadow={'md'}>
-                                <CardHeader m={'auto'} w={'100%'} h={'50%'} >
-                                    <Button w={'100%'} h={'100%'} backgroundColor={'white'} className={clases.allproducts_button} borderRadius={0} onClick={ async () => await setProdusctoID(el._id)} >
-                                        <Link to={'/productDetail'}>
-                                            <Image
-                                                w={'250px'}
-                                                h={'200px'}
-                                                className={clases.allproducts_imag}
-                                                src={`http://localhost:8080/static/${el.urls[0].url}`}
-                                                />
-                                            </Link>
+                            <Card className={clases.allproducts_cart} key={index} mb={75} borderRadius={0} boxShadow={'md'}>
+                                <CardHeader>
+                                    <Button display={'flex'} m={'auto'} w={'75%'} h={'100%'} backgroundColor={'white'} borderRadius={0} onClick={ async () => {
+                                        await setProdusctoID(el._id) 
+                                        router('/productDetail')
+                                    }}
+                                    >
+                                    <Image
+                                        h={'130px'}
+                                        className={clases.allproducts_imag}
+                                        src={`http://localhost:8080/static/${el.urls[0].url}`}
+                                        />
                                     </Button>
                                 </CardHeader>
                                 <CardBody w={'100%'} >
-                                    <Heading fontSize={25} mb={3} >{el.name} </Heading>
-                                    <Text>View a summary of all your customers over the last month.</Text>
+                                    <Heading fontSize={20} mb={1} >{el.name} </Heading>
+                                    <Text fontSize={10} >View a summary of all your customers over the last month.</Text>
                                 </CardBody>
-                                <CardFooter h={'20%'} >
+                                <CardFooter mt={-5} >
                                     <Button 
                                         colorScheme='teal' 
                                         variant='ghost' 
                                         backgroundColor={'#b5b5b5'} 
                                         color={'black'} 
-                                        fontSize={25} 
+                                        fontSize={20} 
                                         w={'100%'} 
                                         onClick={ async () => await setProdusctoID(el._id)}>
                                             <Link to={'/productDetail'}>${el.price} </Link>
@@ -71,31 +74,33 @@ function Allproductos () {
                     }else if ( tipo === el.tipo ){
                         return (
                             <Card className={clases.allproducts_cart}  key={index} mb={75} borderRadius={0} boxShadow={'md'}>
-                                <CardHeader m={'auto'} w={'100%'} h={'50%'} >
-                                    <Button w={'100%'} h={'100%'} backgroundColor={'white'} className={clases.allproducts_button} borderRadius={0} onClick={ async () => await setProdusctoID(el._id)} >
-                                        <Link to={'/productDetail'}>
-                                            <Image
-                                                h={'30%'}
-                                                className={clases.allproducts_imag}
-                                                src={`http://localhost:8080/static/${el.urls[0].url}`}
-                                                />
-                                            </Link>
+                                <CardHeader>
+                                    <Button display={'flex'} m={'auto'} w={'75%'} h={'100%'} backgroundColor={'white'} borderRadius={0} onClick={ async () => {
+                                        await setProdusctoID(el._id) 
+                                        router('/productDetail')
+                                    }}
+                                    >
+                                    <Image
+                                        h={'130px'}
+                                        className={clases.allproducts_imag}
+                                        src={`http://localhost:8080/static/${el.urls[0].url}`}
+                                        />
                                     </Button>
                                 </CardHeader>
                                 <CardBody w={'100%'} >
-                                    <Heading fontSize={25} mb={3} >{el.name} </Heading>
-                                    <Text>View a summary of all your customers over the last month.</Text>
+                                    <Heading fontSize={20} mb={1} >{el.name} </Heading>
+                                    <Text fontSize={10} >View a summary of all your customers over the last month.</Text>
                                 </CardBody>
-                                <CardFooter h={'20%'} >
+                                <CardFooter mt={-5} >
                                     <Button 
                                         colorScheme='teal' 
                                         variant='ghost' 
                                         backgroundColor={'#b5b5b5'} 
                                         color={'black'} 
-                                        fontSize={25} 
+                                        fontSize={20} 
                                         w={'100%'} 
                                         onClick={ async () => await setProdusctoID(el._id)}>
-                                            <Link to={'/productDetail'}>${el.price}</Link>
+                                            <Link to={'/productDetail'}>${el.price} </Link>
                                     </Button>
                                 </CardFooter>
                             </Card>
