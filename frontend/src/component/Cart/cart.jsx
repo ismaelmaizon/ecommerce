@@ -1,11 +1,13 @@
-import { Button, Card, Grid, Heading, Image} from '@chakra-ui/react';
+import { Button, Card, Grid, Heading, Image, Text} from '@chakra-ui/react';
 import { useContext, useEffect, useState } from 'react';
 import { MiContexto } from '../context/contex';
 //import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import clases from './cart.module.css'
 import Swal from 'sweetalert2';
-
+//icon
+import { MdDelete } from "react-icons/md";
+import { FaShoppingCart } from "react-icons/fa";
 
 function Cart () {    
     const router = useNavigate()
@@ -60,37 +62,37 @@ function Cart () {
 
     return (
         <div className={clases.container_carrito}>    
-                <div className={clases.container_carrito}>
-                    <h2 className={clases.container_carrito_title}>Tu carrito:</h2>
-                    <div className='container_carrito_products'>
+                <Text padding={2} fontSize='2xl' > <FaShoppingCart/> </Text>
+                <div className={clases.container_carrito_2}>
+                    <div>
                     {   
                         cartFinal.map( (el, index) => {
                             return (
                                 <Card
                                     key={index} 
-                                    w='75%' m={'auto'} mt='25px' display={"flex"} flexDirection={"row"}
+                                    w='75%' m='auto' mb={5} display={"flex"} flexDirection={"row"} 
                                     >
                                     <Image
                                         objectFit='cover'
-                                        maxW={{ base: '100%', sm: '70px' }}
+                                        boxSize='20%'
                                         src={`http://localhost:8080/static/${el.urls[0].url}`}
                                         alt='Caffe Latte'
                                     />
-                                    <Grid templateColumns={'repeat(2, 1fr)'} gap={20} margin={'auto'} w='100%'>
-                                        <Heading size='md' m={3} >{el.name}</Heading>
-
-                                        <h2> cantidad: {el.cant} </h2>
-                                        <h2> Sub total:  { el.price * el.cant } </h2>
-                                        <div className={clases.cart_buttons} >
-                                            <Button variant='solid' colorScheme='blue' onClick={ async () =>{
+                                    <Grid templateColumns={'repeat(3, 1fr)'} mb={8} gap={2} w='80%' alignItems={'flex-start'} >
+                                        <Heading fontSize='xl' m={1} >{el.name}</Heading>
+                                        
+                                        
+                                        <Text fontSize='sm' as='b' >Cantidad: {el.cant} SubTotal: ${el.price * el.cant }</Text>
+                                        
+                                        <Button w={'60px'} h={'60px'} variant='solid' colorScheme='gray' onClick={ async () =>{
                                                 await deletProductCart(el._id)
                                                 await alertDeleteProductCarrito()
                                                 router('/')
                                             }}
                                             >
-                                                delete
-                                            </Button>
-                                        </div>
+                                            
+                                            <MdDelete />
+                                        </Button>
                                     </Grid>
                                     
                                 </Card>
@@ -100,25 +102,25 @@ function Cart () {
                     </div>
                 </div>
                 <div>
-                    <h1>
-                        Total: {total}
-                    </h1>
-                    <Button variant='solid' colorScheme='blue' onClick={ async () => {
-                        sessionStorage.clear()
-                        router('/')
-                        } } >
-                        limpiar carrito
-                    </Button>
-                    <Button variant='solid' colorScheme='blue' onClick={ () => { 
-                        router('/') }}>
-                        volver
-                    </Button>
-                    <Button variant='solid' colorScheme='blue' onClick={ () => { 
-                        setCartFinal(cartFinal)
-                        router('/Dashboard') }}
-                        >
-                        comprar
-                    </Button>
+                    <Text display={'block'} fontSize='2xl' as='b' mb={2} >Total: $ {total}</Text>
+                    <Grid templateColumns={'repeat(3, 1fr)'} gap={10} >
+                        <Button variant='solid' colorScheme='teal' onClick={ () => { 
+                            router('/') }}>
+                            volver
+                        </Button>
+                        <Button variant='solid' colorScheme='teal' onClick={ async () => {
+                            sessionStorage.clear()
+                            router('/')
+                            } } >
+                            limpiar carrito
+                        </Button>
+                        <Button variant='solid' colorScheme='teal' onClick={ () => { 
+                            setCartFinal(cartFinal)
+                            router('/Dashboard') }}
+                            >
+                            comprar
+                        </Button>
+                    </Grid>
                     </div>
                     
             </div>

@@ -59,12 +59,12 @@ function Inicio() {
     return (
     
 
-        <div className="container_Inicio">
+        <div>
             <div className={clases.container_session}>
                 {saludoUser(session)}
             </div>
             <div className={clases.container_Skills} >
-                <h1 className={clases.container_Skills_h1} >¡Hola conocé nuestros productos!</h1>
+                <h1 className={clases.container_Skills_h1} >¡Nuestros productos!</h1>
             </div>
             { user && addproduct(user) }
             <Allproductos/>

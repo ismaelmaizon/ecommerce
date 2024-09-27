@@ -43,10 +43,11 @@ function Dashboard() {
     //form Forma de Entrega
     const formaEntrega = () => {
         return <form onSubmit={handleSubmit(onSubmit)}>
-            <FormLabel>Escriba su Ubicacion</FormLabel>
+            <FormLabel fontSize='small' >Escriba su Ubicacion</FormLabel>
             <InputGroup>
-                <InputLeftAddon><FaMapMarkerAlt /></InputLeftAddon>
+                <InputLeftAddon fontSize='small' h={8} ><FaMapMarkerAlt /></InputLeftAddon>
                 <Input
+                fontSize='small' h={8}
                 mb={5} 
                 type='text' 
                 id='address'
@@ -63,10 +64,11 @@ function Dashboard() {
     //form Forma de Entrega
     const formaPago = () => {
         return <form onSubmit={handleSubmit(onSubmit)}>
-            <FormLabel>¿Con cuanto abonas?</FormLabel>
+            <FormLabel fontSize='small'>¿Con cuanto abonas?</FormLabel>
             <InputGroup>
-                <InputLeftAddon><FaDollarSign /></InputLeftAddon>
+                <InputLeftAddon fontSize='small' h={8} ><FaDollarSign /></InputLeftAddon>
                 <Input
+                fontSize='small' h={8}
                 mb={5} 
                 type='text' 
                 id='mount'
@@ -189,18 +191,20 @@ function Dashboard() {
     },[])
 
     return (
-        <Card w='100%' m='auto' mb={30} mt={150} bg='gray.400'>
-            <Center fontSize='4xl'>
+        <Card w='70%' m='auto' h='80%' mb={200}   boxShadow='2px 2px 10px 2px'>
+            <Center fontSize='4xl' color='#FFF' backgroundColor='#179061' borderRadius={2}>
                     Ultimo Paso
             </Center>
             <Grid templateColumns='repeat(2, 1fr)' gap={5} m={15} p={5} >
             <form onSubmit={handleSubmit(onSubmit)} action="/upload" method="post" encType="multipart/form-data">
                 <FormControl isInvalid={errors.name} >
-                    <Text fontSize='lg' mb={5}>
+                    <Text fontSize='small' mb={5}>
                         Necesitamos tu informacion personal para concretar la compra
                     </Text>
-                    <FormLabel>Nombre Completo</FormLabel>
-                    <Input 
+                    <FormLabel fontSize='small'>Nombre Completo</FormLabel>
+                    <Input
+                    fontSize='small'
+                    h={8} 
                     mb={5}
                     type='text'
                     id='name'
@@ -212,8 +216,10 @@ function Dashboard() {
                         minLength: { value: 4, message: 'Minimum length should be 4' },
                     })}
                     /><FormErrorMessage>{errors.name && errors.name.message}</FormErrorMessage>
-                    <FormLabel>Email</FormLabel>
+                    <FormLabel fontSize='small'>Email</FormLabel>
                     <Input
+                    fontSize='small'
+                    h={8}
                     mb={5} 
                     type='email'
                     id='email'
@@ -225,10 +231,12 @@ function Dashboard() {
                         minLength: { value: 4, message: 'Minimum length should be 4' },
                     })}
                     /><FormErrorMessage>{errors.name && errors.name.message}</FormErrorMessage>
-                    <FormLabel>Telefono Movil</FormLabel>
+                    <FormLabel fontSize='small' >Telefono Movil</FormLabel>
                     <InputGroup>
-                        <InputLeftAddon>+54 9</InputLeftAddon>
+                        <InputLeftAddon fontSize='small'h={8}>+54 9</InputLeftAddon>
                         <Input
+                        fontSize='small'
+                        h={8}
                         mb={5} 
                         type='number' 
                         id='phone'
@@ -241,25 +249,25 @@ function Dashboard() {
                             maxLength: { value: 9, message: 'Max length should be 9' }
                         })}/><FormErrorMessage>{errors.name && errors.name.message}</FormErrorMessage>
                     </InputGroup>
-                    <FormLabel>Forma de Entrega: {valueRE} </FormLabel>
-                    <Tabs variant='soft-rounded' colorScheme='green'>
+                    <FormLabel fontSize='small' >Forma de Entrega: {valueRE} </FormLabel>
+                    <Tabs variant='soft-rounded' colorScheme='green' mb={3} >
                         <TabList>
-                            <Tab onClick={()=>{ setValueRE('Retiro') }} >Retiro Personalmente</Tab>
-                            <Tab onClick={()=>{ setValueRE('Envio') }}>Quiero que me lo Envien</Tab>
+                            <Tab fontSize='small' h={8} p={2} onClick={()=>{ setValueRE('Retiro') }} >Retiro Personalmente</Tab>
+                            <Tab fontSize='small' h={8} p={2} onClick={()=>{ setValueRE('Envio') }}>Quiero que me lo Envien</Tab>
                         </TabList>
                     </Tabs>
                     {valueRE == 'Envio' &&  formaEntrega()}
                     <FormLabel>Forma de Pago: {valueFP} </FormLabel>
-                    <Tabs variant='soft-rounded' colorScheme='green'>
+                    <Tabs variant='soft-rounded' colorScheme='green' mb={3}>
                         <TabList>
-                            <Tab onClick={()=>{ setValueFP('DebitoCredito') }}>Debito/Credito</Tab>
-                            <Tab onClick={()=>{ setValueFP('Efectivo') }}>Efectivo</Tab>
+                            <Tab fontSize='small' h={8} p={2} onClick={()=>{ setValueFP('DebitoCredito') }}>Debito/Credito</Tab>
+                            <Tab fontSize='small' h={8} p={2} onClick={()=>{ setValueFP('Efectivo') }}>Efectivo</Tab>
                         </TabList>
                     </Tabs>
                     {valueFP == 'Efectivo' && formaPago()}
                     <ButtonGroup mt={15}>
-                        <Button onClick={()=>{ router('/') }} >Volver</Button>
-                        <Button isLoading={isSubmitting} type='submit' onClick={ async ()=>{ 
+                        <Button colorScheme='teal' variant='solid'  onClick={()=>{ router('/') }} >Volver</Button>
+                        <Button colorScheme='teal' variant='solid' isLoading={isSubmitting} type='submit' onClick={ async ()=>{ 
                             const info = getValues()
                             console.log('info');
                             console.log(info);

@@ -6,3 +6,13 @@
   background-size: cover; /* Para ajustar la imagen al tamaño de la ventana del navegador */
 }
 
+@media screen and (max-width: 768px) {
+  /* Oculta el contenedor con la clase .container_select_form */
+  #root {
+    width: 100%;
+    min-height: 100vh; /* Ocupar como mínimo la altura de la ventana */  
+    /*background-image: url('../src/assets/fondoATB1Opacity.jpg');/* Ruta de la imagen de fondo */
+    background-size: cover; /* Para ajustar la imagen al tamaño de la ventana del navegador */
+  }
+  
+}

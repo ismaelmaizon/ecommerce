@@ -1,11 +1,10 @@
 
-import { Link, Route, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import './App.css'
 import Inicio from './component/Inicio/inicio'
 import NavBar from './component/NavBar/navBar'
 import AddProducto from './component/AddProduct/addProduct'
 import Downloadcv from './component/DownloadCv/downloadcv'
-import { ListItem, UnorderedList } from '@chakra-ui/react'
 import CartProvider from './component/context/contex'
 import Cart from './component/Cart/cart'
 import Dashboard from './component/dashboard/dashboard' 
@@ -15,10 +14,8 @@ import RegisterUser from './component/RegisterUser/registerUser'
 import UpDateProducto from './component/updateProduct/updateProduct'
 import SendMail from './component/sendMail/sendMail'
 //icons
-import { IoLocationSharp } from "react-icons/io5";
-import { FaLocationArrow } from "react-icons/fa6";
-import { FaPhoneAlt } from "react-icons/fa";
 import Dashboard2 from './component/dashboard2/dashboard2'
+import Footer from './component/footer/footer'
 
 
 function App() {
@@ -47,32 +44,9 @@ function App() {
                     <Route element={<Downloadcv/>} path='/downloadcv' ></Route>
                   </Routes>
                 </div>
-                
               </div>
-              <div className="footer" >
-                      <div>
-                        <h3 style={{display: 'flex', flexDirection: 'row'}}>Navegacion <FaLocationArrow/></h3> 
-                          <UnorderedList fontSize={12} >
-                              <ListItem><Link to={'/'} >Inicio</Link></ListItem>
-                              <ListItem><Link to={'/'} >Aberturas</Link></ListItem>
-                              <ListItem><Link to={'/'} >Impresiones 3D</Link></ListItem>                    
-                              <ListItem><Link to={'/'} >Interior</Link></ListItem>                    
-                              <ListItem><Link to={'/'} >Alfombras</Link></ListItem>                    
-                          </UnorderedList>
-                      </div>
-                      <div><h3 style={{display: 'flex', flexDirection: 'row'}}>Contactos <FaPhoneAlt/></h3> 
-                          <UnorderedList fontSize={12} >
-                              <ListItem><Link to={'/'} >cel: 3516254315</Link></ListItem>
-                              <ListItem><Link to={'/'} >email: atelier@gmail.com</Link></ListItem>                 
-                          </UnorderedList>
-                      </div>
-                      <div> <h3 style={{display: 'flex', flexDirection: 'row'}}>Ubicacion <IoLocationSharp/></h3> 
-                          <UnorderedList fontSize={12}>
-                              <ListItem><Link to={'https://maps.app.goo.gl/pZqzcWiEutqYtdSq6'}><p> Donato Alva  5233 </p></Link> </ListItem>
-                              <ListItem><Link to={'https://maps.app.goo.gl/pZqzcWiEutqYtdSq6'}><p> Recta Martinolli  1358 </p></Link> </ListItem>
-                              <ListItem><Link to={'https://maps.app.goo.gl/pZqzcWiEutqYtdSq6'}><p> Ricardo Rojas  6047 </p></Link> </ListItem>
-                          </UnorderedList>
-                      </div>
+              <div className='container_3' >
+                    <Footer/>
               </div>
             </CartProvider>
           </div>

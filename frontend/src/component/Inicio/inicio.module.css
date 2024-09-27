@@ -2,11 +2,7 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.container_Inicio{
-    width: 80%;
-    height: 100%;
-    margin-bottom: 15px;
-}
+
 
 .container_session{
     display: flex;
@@ -28,3 +24,13 @@
     font-size: 25px;
 }
 
+@media screen and (max-width: 768px) {
+    /* Oculta el contenedor con la clase .container_select_form */
+    .container_Skills_h1{
+        margin: auto;
+        margin-top: 2px;
+        font-size: 20px;
+    }
+    
+
+}

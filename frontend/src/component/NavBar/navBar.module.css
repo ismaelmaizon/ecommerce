@@ -2,6 +2,7 @@
     display: grid;
     height: 60px;
     grid-template-columns: repeat(3, 1fr);
+    align-items: center;
     gap: 2px;
     background-color:#666666;
 }
@@ -20,7 +21,6 @@
 
 .container_select_title{
     margin: auto;
-    padding-left: 100px;
     font-size: xx-large;
     font-family: 'Cursive';
 }
@@ -34,26 +34,24 @@
 @media screen and (max-width: 768px) {
     /* Oculta el contenedor con la clase .container_select_form */
     .containerNav{
-        display: grid;
-        width: 100%;
-        height: 70px;
+        height: 75px;
         grid-template-columns: repeat(4, 1fr);
-        gap: 2px;
-        background-color:#666666;
-    
     }
+
     .container_select_form {
         display: none;
+        
     }
     .container_select_box{
         display: none;
     }
     .container_select_menu{
         display: flex;
+        
     }
     .container_select_title{
         display: flex;
-        padding-left: 15px;
+        font-size: 25px;
     }
 
 }

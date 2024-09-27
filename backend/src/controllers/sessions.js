@@ -43,8 +43,6 @@ export const register = async (req, res) => {
     
 }
 
-
-
 export const login = async (req, res) => {
     // Acceder a la información proporcionada por Passport-local
     const error = req.authInfo;
@@ -53,8 +51,6 @@ export const login = async (req, res) => {
     console.log('Error:', error);
     console.log('User:', user);
     console.log('Info:', info);
-
-
     if(user == null) {
         res.send({ message: 'clave o usuario incorrecto'})
     }else{

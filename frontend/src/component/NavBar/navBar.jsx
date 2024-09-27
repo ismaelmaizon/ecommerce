@@ -72,7 +72,7 @@ function NavBar() {
                 <Menu>
                     <MenuButton
                         border={'none'}
-                        w={100} h={80}
+                        w='100%' h={20} p={2}
                         fontSize={50}
                         as={IconButton}
                         aria-label='Options'
@@ -104,7 +104,7 @@ function NavBar() {
                 </Menu>
 
             </div>
-            <div className={clases.container_select}>
+            <div className={clases.container_select_title}>
                 <Link className={clases.container_select_title} to='/'>
                     <h1>AtelierBodereau</h1>
                 </Link>

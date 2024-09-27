@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react'
 import clases from './sendMail.module.css'
 import { MiContexto } from '../context/contex'
-import { Box, Button, ButtonGroup, Card, CardBody, CardFooter, CardHeader, Center, Heading, Spacer, Text } from '@chakra-ui/react';
+import { Box, Button, ButtonGroup, Card, CardBody, CardFooter, CardHeader, Center, Grid, Heading, Spacer, Text } from '@chakra-ui/react';
 import axios from 'axios';
 import { useNavigate} from "react-router-dom";
 
@@ -110,57 +110,62 @@ function SendMail() {
     },[])
 
     return(
-        <div className={clases.formulario}>
-            <Card  backgroundColor={'#666666'} >
-                <CardHeader>
-                    <Heading size='md'  > Codigo de Venta: </Heading>
-                    <Center fontSize={25} >{idVenta} </Center>
-                </CardHeader>
-                <CardBody>
-                    <Text fontSize={25} pt={10} >info personal</Text>
-                    <Text fontSize={15} >nombre: {name}</Text>
-                    <Text fontSize={15} >email: {email} </Text>
-                    <Text fontSize={15} >cel: {phone} </Text>
-                    <Text fontSize={15} >Fecha: {date} </Text>
-                </CardBody>
+        <Card w='60%' m='auto' boxShadow='2px 2px 10px 2px ' >
+            <CardHeader m='auto' display='flex' flexDirection='column' >
+                <Heading size='md' p={2} >Codigo de Venta</Heading>
+                <Heading size='md' p={2} color='white' borderRadius={5} backgroundColor='#179061' >{idVenta} </Heading>
+            </CardHeader>
+            <CardBody  >
+            <Grid m='auto' pb={15} templateColumns='repeat(2, 1fr)'>
+                <Box w='90%' h='100%' m='auto' p={15} >  
+                    <Text fontSize='2xl' >Cliente</Text>
+                    <Text fontSize='md' as='b'>Nombre:</Text>
+                    <Text fontSize='md' >{name}</Text>
+                    <Text fontSize='md' as='b'>email: </Text>
+                    <Text fontSize='md' >{email} </Text>
+                    <Text fontSize='md' as='b'>cel: </Text>
+                    <Text fontSize='md' >{phone} </Text>
+                    <Text fontSize='md' as='b'>Fecha: </Text>
+                    <Text fontSize='md' >{date} </Text>
+                </Box>
                 <Box w='90%' h='100%' m='auto' p={15} display='flex' flexDirection='column'>
                     <Text fontSize='2xl' >
-                        Descripcion
+                        Pedido
                     </Text>
                     { cartFinal.map((el, index)=>{
                         return <div key={index}>
-                                    <Text fontSize='lg' >
-                                        producto: {el.name} 
+                                    <Text fontSize='lg' as='b' >
+                                        {el.name} 
                                     </Text>
                                     <Text fontSize='sm'>
-                                        Valor por Unidad: ${el.price} - cantidad: {el.cant} 
+                                        Valor/u: ${el.price} - Cantidad: {el.cant} 
                                     </Text>
                                 </div>
                     }) }
-                    <Spacer/>
-                    <Text fontSize='2xl' >
+                    <Text fontSize='2xl' as='b'>
                         Total: {total}
                     </Text>
                 </Box>
-                <CardFooter>
-                    <ButtonGroup>
-                        <Button onClick={ async ()=>{ 
-                            //await deleteidVenta()
-                            //await upDateVenta(idVenta)
-                            //await sendEmail(idVenta)
-                            router('/') } } >enviar por mail y finalizar</Button>
-                        <Button onClick={ async ()=>{
-                            //await upDateVenta(idVenta)
-                            //await sendEmail(idVenta)
-                            await sendWsp(mensaje)
-                            clearCart()
-                            //await deleteidVenta()
-                            //router('/')
-                            } } >enviar wsp</Button>
-                    </ButtonGroup>
-                </CardFooter>
-            </Card>
-        </div>
+            </Grid>
+            </CardBody>
+            <CardFooter>
+                <ButtonGroup>
+                    <Button colorScheme='teal' variant='solid' onClick={ async ()=>{ 
+                        //await deleteidVenta()
+                        //await upDateVenta(idVenta)
+                        //await sendEmail(idVenta)
+                        router('/') } } >enviar por mail y finalizar</Button>
+                    <Button colorScheme='teal' variant='solid' onClick={ async ()=>{
+                        //await upDateVenta(idVenta)
+                        //await sendEmail(idVenta)
+                        await sendWsp(mensaje)
+                        clearCart()
+                        //await deleteidVenta()
+                        //router('/')
+                        } } >enviar wsp</Button>
+                </ButtonGroup>
+            </CardFooter>
+        </Card>
     )
 }
 
