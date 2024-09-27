@@ -56,8 +56,7 @@ app.use(express.urlencoded({extended:false})) //permite poder entender lo que lo
 app.use(cookieParser('mysecretsession'))
 app.use(session({ // configuramos sus elementos por seguridad, pero es necesario leer la documentacion para entender mejor que es cada elemento
   store:MongoStore.create({
-      mongoUrl:  process.env.MONGODB_URL,//'mongodb+srv://ismaelmaizon1234:i35lPBag8MKqWaiw@cluster0.jy2xumj.mongodb.net/?retryWrites=true&w=majority',
-      //mongoOptions: { useNewUrlParser: true, useUnifiedTopology: true },
+      mongoUrl:  process.env.MONGODB_URL,
       ttl: 120,
   }),
   secret: 'mysecretsession',
